@@ -14,7 +14,7 @@ exports[`EmptyState matches the snapshot 1`] = `
     style={
       {
         "alignItems": "center",
-        "backgroundColor": "#EEF2FF",
+        "backgroundColor": "#EFF6FF",
         "borderRadius": 44,
         "height": 88,
         "justifyContent": "center",
@@ -29,7 +29,7 @@ exports[`EmptyState matches the snapshot 1`] = `
       style={
         [
           {
-            "color": "#4F46E5",
+            "color": "#2563EB",
             "fontSize": 40,
           },
           undefined,
