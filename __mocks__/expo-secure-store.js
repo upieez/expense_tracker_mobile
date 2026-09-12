@@ -1,6 +1,5 @@
-// Manual mock for expo-secure-store (native module, unsafe under Jest).
-// Backed by a plain in-memory object rather than AsyncStorage's own mock so
-// this stays independent — call __reset() in beforeEach to isolate tests.
+
+
 const store = {};
 
 function reset() {

@@ -8,8 +8,6 @@ import { ExpensesProvider, useExpenses } from '../store/ExpensesContext';
 import { SettingsProvider, useSettings } from '../store/SettingsContext';
 import { STORAGE_KEY } from '../services/expenseStorage';
 
-// Sibling component exposing store state, same pattern as the other screen
-// test harnesses — lets us assert a setting/action actually reached storage.
 function ExposedState() {
   const { expenses } = useExpenses();
   const { currencySymbol, reminderEnabled } = useSettings();
@@ -46,8 +44,6 @@ describe('SettingsScreen', () => {
     await renderSettings();
     await waitFor(() => expect(screen.getByTestId('reminder').props.children).toBe('false'));
 
-    // Switch doesn't respond to a synthetic press the way a Pressable does —
-    // its interaction is the platform-level valueChange event.
     fireEvent(screen.getByLabelText('Daily reminder'), 'valueChange', true);
 
     await waitFor(() => expect(screen.getByTestId('reminder').props.children).toBe('true'));

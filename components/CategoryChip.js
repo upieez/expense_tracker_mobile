@@ -2,8 +2,6 @@ import { Pressable, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, spacing, typography, radii } from '../theme';
 
-// One selectable chip in the category picker grid. Unselected chips are
-// outlined in the category's own color; the selected chip fills solid.
 export default function CategoryChip({ category, selected, onPress }) {
   return (
     <Pressable

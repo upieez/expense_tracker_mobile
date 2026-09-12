@@ -22,7 +22,7 @@ describe('topCategoryInsight', () => {
     expect(topCategoryInsight(items)).toBe('Food & Drink is 75% of your spending this month.');
   });
   it('stays quiet when no category dominates', () => {
-    // 4 categories at 25% each — evenly spread, none clears the 30% bar.
+
     const items = [
       exp('a', 10, '2026-08-01', 'food'),
       exp('b', 10, '2026-08-02', 'transport'),
@@ -71,12 +71,12 @@ describe('biggestExpenseInsight', () => {
 
 describe('weekendSkewInsight', () => {
   it('flags a real weekend skew', () => {
-    // 2026-08-15/16 are Sat/Sun; 2026-08-17/18/19 are weekdays
+
     const items = [
-      exp('a', 60, '2026-08-15'), // Sat
-      exp('b', 40, '2026-08-16'), // Sun
-      exp('c', 20, '2026-08-17'), // Mon
-      exp('d', 20, '2026-08-18'), // Tue
+      exp('a', 60, '2026-08-15'),
+      exp('b', 40, '2026-08-16'),
+      exp('c', 20, '2026-08-17'),
+      exp('d', 20, '2026-08-18'),
     ];
     expect(weekendSkewInsight(items)).toMatch(/weekends/);
   });

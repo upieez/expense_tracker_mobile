@@ -35,8 +35,8 @@ describe('month filtering', () => {
   const items = [
     exp('a', 10, '2026-08-16'),
     exp('b', 20, '2026-08-01'),
-    exp('c', 30, '2026-07-31'), // previous month
-    exp('d', 40, '2025-08-16'), // previous year, same month
+    exp('c', 30, '2026-07-31'),
+    exp('d', 40, '2025-08-16'),
   ];
   it('filters by year and month', () => {
     expect(filterByMonth(items, 2026, 7).map((e) => e.id)).toEqual(['a', 'b']);

@@ -43,7 +43,7 @@ describe('parseAmountInput', () => {
     expect(parseAmountInput('0')).toBeNull();
     expect(parseAmountInput('0.00')).toBeNull();
     expect(parseAmountInput('-5')).toBeNull();
-    expect(parseAmountInput('12.345')).toBeNull(); // >2dp
+    expect(parseAmountInput('12.345')).toBeNull();
     expect(parseAmountInput('abc')).toBeNull();
     expect(parseAmountInput('')).toBeNull();
     expect(parseAmountInput('1,000')).toBeNull();
@@ -55,17 +55,17 @@ describe('date helpers', () => {
     expect(toISODate(parseISODate('2026-08-16'))).toBe('2026-08-16');
   });
   it('formats a day heading', () => {
-    // 16 Aug 2026 is a Sunday
+
     expect(formatDayHeading('2026-08-16')).toBe('Sun, 16 Aug');
   });
   it('labels today and yesterday relative to an injected now', () => {
-    const now = new Date(2026, 7, 16); // 16 Aug 2026
+    const now = new Date(2026, 7, 16);
     expect(dayLabel('2026-08-16', now)).toBe('Today');
     expect(dayLabel('2026-08-15', now)).toBe('Yesterday');
     expect(dayLabel('2026-08-10', now)).toBe('Mon, 10 Aug');
   });
   it('handles month boundaries for yesterday', () => {
-    const now = new Date(2026, 8, 1); // 1 Sep 2026
+    const now = new Date(2026, 8, 1);
     expect(dayLabel('2026-08-31', now)).toBe('Yesterday');
   });
   it('formats month + year', () => {

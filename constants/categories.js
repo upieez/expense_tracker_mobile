@@ -1,6 +1,4 @@
-// Fixed expense categories. Each has a stable id (stored with the expense),
-// a display label, an Ionicons icon name and a colour used consistently in
-// the list rows, the category picker and the stats chart.
+
 
 export const CATEGORIES = [
   { id: 'food', label: 'Food & Drink', icon: 'restaurant', color: '#F59E0B' },
@@ -13,8 +11,6 @@ export const CATEGORIES = [
   { id: 'other', label: 'Other', icon: 'ellipsis-horizontal-circle', color: '#64748B' },
 ];
 
-// Look up a category by its id, falling back to 'other' so a bad/legacy id
-// can never crash a render.
 export function getCategory(id) {
   return CATEGORIES.find((c) => c.id === id) ?? CATEGORIES[CATEGORIES.length - 1];
 }

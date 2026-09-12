@@ -39,10 +39,6 @@ export default function SettingsScreen() {
     };
   }, []);
 
-  // Purely informational (see services/exchangeRate.js) — the app has no
-  // multi-currency logic, this just demonstrates a real HTTP integration.
-  // Re-fetches whenever the currency symbol changes; the service itself
-  // handles daily caching and offline/error fallback to a stale value.
   useEffect(() => {
     let cancelled = false;
     getExchangeRate(currencyCodeForSymbol(currencySymbol))
@@ -61,10 +57,6 @@ export default function SettingsScreen() {
     updateSettings({ currencySymbol: next });
   }
 
-  // Enabling asks for OS permission first — the toggle only actually turns on
-  // if permission is granted, and the reminder is (re)scheduled to match.
-  // Disabling always cancels, even if permission was never granted, so state
-  // never drifts from what's actually scheduled on the device.
   async function handleReminderToggle(value) {
     if (!value) {
       updateSettings({ reminderEnabled: false });

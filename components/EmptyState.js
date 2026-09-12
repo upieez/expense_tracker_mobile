@@ -2,8 +2,6 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, spacing, typography } from '../theme';
 
-// Reusable friendly empty state, used by Home (no expenses yet) and
-// Stats (no data for the selected month).
 export default function EmptyState({ icon = 'wallet-outline', title, message }) {
   return (
     <View style={styles.container}>

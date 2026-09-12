@@ -1,9 +1,6 @@
 import { parseISODate } from '../utils/format';
 import { CATEGORIES } from '../constants/categories';
 
-// Pure selectors over the expenses array. All money maths rounds to cents
-// to avoid floating-point drift.
-
 export function roundCents(n) {
   return Math.round(n * 100) / 100;
 }
@@ -12,7 +9,6 @@ export function sumAmounts(expenses) {
   return roundCents(expenses.reduce((acc, e) => acc + e.amount, 0));
 }
 
-// Expenses spent in a given month. monthIndex is 0-based (Date#getMonth).
 export function filterByMonth(expenses, year, monthIndex) {
   return expenses.filter((e) => {
     const d = parseISODate(e.date);
@@ -24,8 +20,6 @@ export function totalForMonth(expenses, year, monthIndex) {
   return sumAmounts(filterByMonth(expenses, year, monthIndex));
 }
 
-// SectionList shape: [{ title: 'YYYY-MM-DD', data: [expense] }],
-// days newest-first, and within a day newest-logged-first.
 export function groupIntoDaySections(expenses) {
   const byDay = new Map();
   for (const e of expenses) {
@@ -40,9 +34,6 @@ export function groupIntoDaySections(expenses) {
     }));
 }
 
-// Per-category totals for a set of expenses (typically one month),
-// sorted largest-first, with share of total (0..1). Categories with no
-// spending are omitted.
 export function totalsByCategory(expenses) {
   const total = sumAmounts(expenses);
   const byCat = new Map();
@@ -58,7 +49,6 @@ export function totalsByCategory(expenses) {
     .sort((a, b) => b.total - a.total);
 }
 
-// Months that contain data, newest-first: [{ year, monthIndex }].
 export function monthsWithData(expenses) {
   const seen = new Set();
   const out = [];

@@ -44,7 +44,7 @@ describe('StatsScreen — with data', () => {
     expect(screen.getByText('$30.00')).toBeOnTheScreen();
     expect(screen.getByText('Transport')).toBeOnTheScreen();
     expect(screen.getByText('$10.00')).toBeOnTheScreen();
-    // Food is 75% of $40 total — clears the 30% threshold for the top-category insight.
+
     expect(screen.getByText(/Food & Drink is 75% of your spending this month\./)).toBeOnTheScreen();
   });
 
@@ -74,14 +74,14 @@ describe('StatsScreen — with data', () => {
 
     const user = userEvent.setup();
     const prevBtn = screen.getByRole('button', { name: 'Previous month' });
-    // Walk back exactly one full year, one month at a time.
+
     for (let i = 0; i < 12; i++) {
-      // eslint-disable-next-line no-await-in-loop
+
       await user.press(prevBtn);
     }
 
     await waitFor(() => expect(screen.getByText(new RegExp(`${monthLabel} ${now.getFullYear() - 1}`))).toBeOnTheScreen());
-    // We're in the past now, so paging forward must be allowed again.
+
     expect(screen.getByRole('button', { name: 'Next month' }).props.accessibilityState.disabled).toBe(false);
   });
 });

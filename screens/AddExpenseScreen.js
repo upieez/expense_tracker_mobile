@@ -23,8 +23,6 @@ import { parseAmountInput, toISODate, dayLabel } from '../utils/format';
 import { deleteReceiptPhoto } from '../services/photoStorage';
 import { colors, spacing, typography, radii } from '../theme';
 
-// Add/Edit form, presented as a modal over the tabs. Edit mode is entered
-// by navigating here with a route param: { expense }.
 export default function AddExpenseScreen({ navigation, route }) {
   const { addExpense, updateExpense } = useExpenses();
   const { currencySymbol } = useSettings();
@@ -52,11 +50,6 @@ export default function AddExpenseScreen({ navigation, route }) {
     navigation.goBack();
   }
 
-  // Self-evaluation finding (heuristic 3, "user control and freedom" / error
-  // prevention): closing the form previously discarded anything typed with
-  // no warning. Now it only prompts when there's actually something to lose,
-  // comparing against the original record in edit mode so an unrelated field
-  // touch-then-untouch doesn't trigger a false "discard?" prompt.
   function isDirty() {
     if (editing) {
       return (
@@ -102,8 +95,7 @@ export default function AddExpenseScreen({ navigation, route }) {
 
   function handlePhotoCaptured(uri) {
     setShowCamera(false);
-    // Retaking replaces the previous file — clean up the one being discarded
-    // so we don't leak orphaned images into the receipts directory.
+
     if (photoUri && photoUri !== uri) {
       deleteReceiptPhoto(photoUri).catch(() => {});
     }

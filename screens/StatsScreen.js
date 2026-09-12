@@ -31,7 +31,7 @@ export default function StatsScreen() {
   }
 
   function goToNextMonth() {
-    if (isCurrentMonth) return; // no point viewing the future
+    if (isCurrentMonth) return;
     if (monthIndex === 11) {
       setYear((y) => y + 1);
       setMonthIndex(0);

@@ -1,4 +1,4 @@
-// Manual mock for expo-haptics (native module, unsafe under Jest).
+
 module.exports = {
   notificationAsync: jest.fn().mockResolvedValue(undefined),
   impactAsync: jest.fn().mockResolvedValue(undefined),

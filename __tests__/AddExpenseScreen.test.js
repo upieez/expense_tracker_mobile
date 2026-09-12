@@ -7,10 +7,6 @@ import { ExpensesProvider, useExpenses } from '../store/ExpensesContext';
 import { SettingsProvider } from '../store/SettingsContext';
 import { STORAGE_KEY } from '../services/expenseStorage';
 
-// Small harness: mounts the screen inside a real ExpensesProvider (backed by
-// the AsyncStorage mock) plus a sibling component that exposes the current
-// store state, so we can assert Save actually reached the store — not just
-// that the button was pressable.
 function ExposedState() {
   const { expenses } = useExpenses();
   const total = expenses.reduce((sum, e) => sum + e.amount, 0);
@@ -49,7 +45,7 @@ describe('AddExpenseScreen — add mode', () => {
     expect(save.props.accessibilityState.disabled).toBe(true);
 
     await user.type(screen.getByLabelText('Amount'), '8.50');
-    expect(save.props.accessibilityState.disabled).toBe(true); // still no category
+    expect(save.props.accessibilityState.disabled).toBe(true);
 
     await user.press(screen.getByRole('button', { name: 'Food & Drink' }));
     expect(save.props.accessibilityState.disabled).toBe(false);
@@ -194,7 +190,7 @@ describe('AddExpenseScreen — receipt photo', () => {
 
     await user.press(screen.getByLabelText('Receipt photo, tap to retake or remove'));
 
-    expect(FileSystem.deleteAsync).not.toHaveBeenCalled(); // file doesn't "exist" per the mock's default getInfoAsync
+    expect(FileSystem.deleteAsync).not.toHaveBeenCalled();
     await waitFor(() => expect(screen.getByRole('button', { name: 'Add receipt photo' })).toBeOnTheScreen());
     alertSpy.mockRestore();
   });
@@ -222,8 +218,7 @@ describe('AddExpenseScreen — edit mode', () => {
 
   it('updates the existing expense in place rather than adding a new one', async () => {
     const user = userEvent.setup();
-    // Seed the store with the same expense the form was opened to edit,
-    // so the update has a real record to find and replace.
+
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify([existing]));
 
     await renderScreen({ expense: existing });
@@ -234,8 +229,6 @@ describe('AddExpenseScreen — edit mode', () => {
     await user.type(amountInput, '30');
     await user.press(screen.getByRole('button', { name: 'Save Changes' }));
 
-    // Count stays at 1 (proves it was an in-place update, not a second add)
-    // and the stored total reflects the new amount.
     expect(screen.getByTestId('count').props.children).toBe(1);
     expect(screen.getByTestId('total').props.children).toBe(30);
   });

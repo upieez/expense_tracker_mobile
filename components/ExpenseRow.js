@@ -4,11 +4,6 @@ import { getCategory } from '../constants/categories';
 import { formatCurrency } from '../utils/format';
 import { colors, spacing, typography, radii } from '../theme';
 
-// One row in the Home SectionList. Tap to edit, long-press to delete
-// (with a confirm dialog — long-press was chosen over swipe-to-delete to
-// avoid an extra gesture dependency risk inside Expo Snack). onDelete
-// receives the whole expense, not just its id, so the caller can clean up
-// an attached receipt photo file alongside removing the record.
 export default function ExpenseRow({ expense, onPress, onDelete, currencySymbol = '$' }) {
   const category = getCategory(expense.categoryId);
 

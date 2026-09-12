@@ -8,10 +8,6 @@ import SettingsScreen from '../screens/SettingsScreen';
 import AddExpenseScreen from '../screens/AddExpenseScreen';
 import { colors } from '../theme';
 
-// Structure: a root stack whose first screen is the tab navigator, with
-// AddExpense presented modally over the tabs — the standard "quick add"
-// pattern, so every tab keeps its state while the form is open.
-
 const Tab = createBottomTabNavigator();
 const RootStack = createNativeStackNavigator();
 

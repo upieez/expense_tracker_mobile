@@ -5,9 +5,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { persistReceiptPhoto } from '../services/photoStorage';
 import { colors, spacing, typography, radii } from '../theme';
 
-// Full-screen camera overlay rendered inline inside AddExpenseScreen (not a
-// separate navigator route) so capturing a photo never has to pass a URI
-// across a screen boundary — it just calls back into the form directly.
 export default function CameraCapture({ visible, onClose, onCapture }) {
   const [permission, requestPermission] = useCameraPermissions();
   const [capturing, setCapturing] = useState(false);

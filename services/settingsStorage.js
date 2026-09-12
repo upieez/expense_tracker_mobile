@@ -1,9 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// App preferences (reminder toggle/time, currency symbol). Small, flat
-// object under one key — no need for the list-shaped storage the expenses
-// service uses.
-
 export const SETTINGS_KEY = '@expense-tracker/settings:v1';
 
 export const DEFAULT_SETTINGS = {

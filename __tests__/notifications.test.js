@@ -58,9 +58,6 @@ describe('scheduleDailyReminder', () => {
     );
   });
 
-  // Regression guard: SDK 53+ treats the trigger as a discriminated union, so
-  // a trigger without a valid `type` is rejected at runtime with "The trigger
-  // object you provided is invalid."
   it('tags the trigger with a type from the SDK trigger enum', async () => {
     await scheduleDailyReminder(7, 45);
     const { trigger } = Notifications.scheduleNotificationAsync.mock.calls[0][0];

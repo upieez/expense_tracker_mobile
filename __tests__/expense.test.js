@@ -14,7 +14,7 @@ describe('createExpense', () => {
     const e = createExpense({ amount: 8.5, categoryId: 'food' }, now);
     expect(e.amount).toBe(8.5);
     expect(e.categoryId).toBe('food');
-    expect(e.date).toBe('2026-08-16'); // defaults to "today" for the injected now
+    expect(e.date).toBe('2026-08-16');
     expect(e.note).toBe('');
     expect(e.photoUri).toBeNull();
     expect(e.createdAt).toBe(now.getTime());
@@ -38,7 +38,7 @@ describe('withUpdates', () => {
     expect(updated.id).toBe(original.id);
     expect(updated.createdAt).toBe(original.createdAt);
     expect(updated.updatedAt).toBe(later.getTime());
-    // original untouched
+
     expect(original.amount).toBe(5);
   });
 });

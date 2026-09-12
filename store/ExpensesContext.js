@@ -5,10 +5,6 @@ import { createExpense, withUpdates } from '../utils/expense';
 import * as storage from '../services/expenseStorage';
 import { deleteReceiptPhoto } from '../services/photoStorage';
 
-// Single source of truth for expenses. Screens read state + call actions;
-// every action updates the reducer immediately (snappy UI) and mirrors the
-// change to AsyncStorage. State hydrates from storage once on launch.
-
 const ExpensesContext = createContext(null);
 
 export function ExpensesProvider({ children }) {
@@ -40,8 +36,7 @@ export function ExpensesProvider({ children }) {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
         return updated;
       },
-      // Takes the full expense (not just its id) so we can clean up its
-      // receipt photo file, if it has one, alongside removing the record.
+
       removeExpense(expense) {
         dispatch({ type: 'remove', id: expense.id });
         storage.removeExpense(expense.id).catch((e) => console.warn('persist remove failed', e));

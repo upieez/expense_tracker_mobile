@@ -1,10 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { DEFAULT_SETTINGS, getSettings, saveSettings } from '../services/settingsStorage';
 
-// Same hydrate-then-write-through shape as ExpensesContext, but the state
-// is a flat preferences object rather than a list, so a plain useState is
-// enough — no reducer needed.
-
 const SettingsContext = createContext(null);
 
 export function SettingsProvider({ children }) {

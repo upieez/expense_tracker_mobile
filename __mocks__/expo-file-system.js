@@ -1,4 +1,4 @@
-// Manual mock for expo-file-system (native module, unsafe under Jest).
+
 const documentDirectory = 'file:///mock-documents/';
 const getInfoAsync = jest.fn().mockResolvedValue({ exists: false });
 const makeDirectoryAsync = jest.fn().mockResolvedValue(undefined);

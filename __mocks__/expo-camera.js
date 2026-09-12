@@ -1,6 +1,5 @@
-// Manual mock — CameraView is a native view and useCameraPermissions wraps
-// a native module; neither can run under Jest. The mock exposes jest.fn()s
-// so individual tests can override permission state and capture behavior.
+
+
 const React = require('react');
 const { View } = require('react-native');
 

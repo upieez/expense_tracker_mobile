@@ -1,23 +1,18 @@
-// Design tokens — every screen styles exclusively from these values.
-// Keeping colour/spacing/type in one place is what makes the UI consistent
-// (and makes a future dark mode a token swap rather than a rewrite).
+
 
 export const colors = {
-  // Brand
+
   primary: '#2563EB',
   primaryLight: '#EFF6FF',
 
-  // Surfaces
   background: '#F8FAFC',
   surface: '#FFFFFF',
   border: '#E2E8F0',
 
-  // Text
   textPrimary: '#0F172A',
   textSecondary: '#64748B',
   textInverse: '#FFFFFF',
 
-  // Semantic
   danger: '#DC2626',
   success: '#16A34A',
   warning: '#D97706',
@@ -33,14 +28,13 @@ export const spacing = {
 };
 
 export const typography = {
-  // Font sizes
+
   caption: 12,
   body: 15,
   subtitle: 17,
   title: 22,
   display: 34,
 
-  // Weights
   regular: '400',
   medium: '500',
   semibold: '600',

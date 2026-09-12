@@ -6,9 +6,6 @@ import { colors, spacing, typography } from '../theme';
 const CHART_HEIGHT = 120;
 const BAR_WIDTH = 28;
 
-// Hand-rolled bar chart (react-native-svg, no charting library) — one bar
-// per category with spend > 0, tallest first, height proportional to the
-// largest category's total. `totals` is the output of selectors.totalsByCategory.
 export default function CategoryBarChart({ totals }) {
   if (totals.length === 0) return null;
   const max = Math.max(...totals.map((t) => t.total));

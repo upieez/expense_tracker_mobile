@@ -49,12 +49,7 @@ export default function HomeScreen({ navigation }) {
           renderSectionHeader={({ section }) => (
             <Text style={styles.sectionHeader}>{dayLabel(section.title)}</Text>
           )}
-          // Self-evaluation finding (heuristic 6, "recognition rather than
-          // recall" / discoverability): long-press-to-delete has no visible
-          // affordance anywhere in the UI, so a first-time user has no way to
-          // discover it. A persistent low-emphasis footer hint is cheaper and
-          // less intrusive than an onboarding tooltip, at the cost of being
-          // easy to stop noticing once learned — a deliberate trade-off.
+
           ListFooterComponent={<Text style={styles.hint}>Long-press an expense to delete it</Text>}
           contentContainerStyle={styles.listContent}
           stickySectionHeadersEnabled={false}
