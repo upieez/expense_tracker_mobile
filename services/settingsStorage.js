@@ -1,12 +1,12 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const SETTINGS_KEY = '@expense-tracker/settings:v1';
+export const SETTINGS_KEY = "@expense-tracker/settings:v1";
 
 export const DEFAULT_SETTINGS = {
   reminderEnabled: false,
   reminderHour: 20,
   reminderMinute: 0,
-  currencySymbol: '$',
+  currencySymbol: "$",
 };
 
 export async function getSettings() {
@@ -16,7 +16,7 @@ export async function getSettings() {
     const parsed = JSON.parse(raw);
     return { ...DEFAULT_SETTINGS, ...parsed };
   } catch (e) {
-    console.warn('settingsStorage: failed to read, using defaults', e);
+    console.warn("settingsStorage: failed to read, using defaults", e);
     return { ...DEFAULT_SETTINGS };
   }
 }

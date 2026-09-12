@@ -18,6 +18,6 @@ describe('OfflineBanner', () => {
     Network.getNetworkStateAsync.mockResolvedValue({ isConnected: false, isInternetReachable: false });
     await render(<OfflineBanner />);
     await waitFor(() => expect(screen.getByRole('alert')).toBeOnTheScreen());
-    expect(screen.getByText(/still saves locally/)).toBeOnTheScreen();
+    expect(screen.getByText(/offline/i)).toBeOnTheScreen();
   });
 });

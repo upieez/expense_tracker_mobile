@@ -1,20 +1,20 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
-import HomeScreen from '../screens/HomeScreen';
-import StatsScreen from '../screens/StatsScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-import AddExpenseScreen from '../screens/AddExpenseScreen';
-import { colors } from '../theme';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
+import HomeScreen from "../screens/HomeScreen";
+import StatsScreen from "../screens/StatsScreen";
+import SettingsScreen from "../screens/SettingsScreen";
+import AddExpenseScreen from "../screens/AddExpenseScreen";
+import { colors } from "../theme";
 
 const Tab = createBottomTabNavigator();
 const RootStack = createNativeStackNavigator();
 
 const TAB_ICONS = {
-  Home: ['home', 'home-outline'],
-  Stats: ['bar-chart', 'bar-chart-outline'],
-  Settings: ['settings', 'settings-outline'],
+  Home: ["home", "home-outline"],
+  Stats: ["bar-chart", "bar-chart-outline"],
+  Settings: ["settings", "settings-outline"],
 };
 
 function Tabs() {
@@ -26,7 +26,13 @@ function Tabs() {
         tabBarInactiveTintColor: colors.textSecondary,
         tabBarIcon: ({ focused, color, size }) => {
           const [active, inactive] = TAB_ICONS[route.name];
-          return <Ionicons name={focused ? active : inactive} size={size} color={color} />;
+          return (
+            <Ionicons
+              name={focused ? active : inactive}
+              size={size}
+              color={color}
+            />
+          );
         },
       })}
     >
@@ -41,11 +47,19 @@ export default function AppNavigator() {
   return (
     <NavigationContainer>
       <RootStack.Navigator>
-        <RootStack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
+        <RootStack.Screen
+          name="Tabs"
+          component={Tabs}
+          options={{ headerShown: false }}
+        />
         <RootStack.Screen
           name="AddExpense"
           component={AddExpenseScreen}
-          options={{ presentation: 'modal', title: 'Add Expense', headerShown: false }}
+          options={{
+            presentation: "modal",
+            title: "Add Expense",
+            headerShown: false,
+          }}
         />
       </RootStack.Navigator>
     </NavigationContainer>

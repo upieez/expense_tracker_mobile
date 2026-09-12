@@ -1,6 +1,6 @@
-import { Pressable, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { colors, spacing, typography, radii } from '../theme';
+import { Pressable, Text, StyleSheet } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { colors, spacing, typography, radii } from "../theme";
 
 export default function CategoryChip({ category, selected, onPress }) {
   return (
@@ -21,7 +21,12 @@ export default function CategoryChip({ category, selected, onPress }) {
         color={selected ? colors.textInverse : category.color}
         style={styles.icon}
       />
-      <Text style={[styles.label, { color: selected ? colors.textInverse : category.color }]}>
+      <Text
+        style={[
+          styles.label,
+          { color: selected ? colors.textInverse : category.color },
+        ]}
+      >
         {category.label}
       </Text>
     </Pressable>
@@ -30,8 +35,8 @@ export default function CategoryChip({ category, selected, onPress }) {
 
 const styles = StyleSheet.create({
   chip: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     borderWidth: 1.5,
     borderRadius: radii.pill,
     paddingVertical: spacing.xs,

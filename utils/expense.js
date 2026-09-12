@@ -1,4 +1,4 @@
-import { toISODate } from './format';
+import { toISODate } from "./format";
 
 let counter = 0;
 
@@ -8,7 +8,10 @@ export function generateId(now = Date.now()) {
   return `exp_${now}_${counter}_${rand}`;
 }
 
-export function createExpense({ amount, categoryId, date, note = '', photoUri = null }, now = new Date()) {
+export function createExpense(
+  { amount, categoryId, date, note = "", photoUri = null },
+  now = new Date(),
+) {
   return {
     id: generateId(now.getTime()),
     amount,
@@ -22,5 +25,11 @@ export function createExpense({ amount, categoryId, date, note = '', photoUri = 
 }
 
 export function withUpdates(expense, changes, now = new Date()) {
-  return { ...expense, ...changes, id: expense.id, createdAt: expense.createdAt, updatedAt: now.getTime() };
+  return {
+    ...expense,
+    ...changes,
+    id: expense.id,
+    createdAt: expense.createdAt,
+    updatedAt: now.getTime(),
+  };
 }

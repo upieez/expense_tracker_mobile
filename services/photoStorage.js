@@ -1,10 +1,9 @@
-import { Platform } from 'react-native';
+import { Platform } from "react-native";
 
 let FileSystem = null;
-if (Platform.OS !== 'web') {
+if (Platform.OS !== "web") {
   try {
-
-    FileSystem = require('expo-file-system/legacy');
+    FileSystem = require("expo-file-system/legacy");
   } catch (e) {
     FileSystem = null;
   }
@@ -36,6 +35,6 @@ export async function deleteReceiptPhoto(uri) {
       await FileSystem.deleteAsync(uri, { idempotent: true });
     }
   } catch (e) {
-    console.warn('photoStorage: failed to delete photo', e);
+    console.warn("photoStorage: failed to delete photo", e);
   }
 }

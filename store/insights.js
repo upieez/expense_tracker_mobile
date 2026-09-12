@@ -1,8 +1,11 @@
-
-
-import { totalsByCategory, totalForMonth, largestExpense, filterByMonth } from './selectors';
-import { getCategory } from '../constants/categories';
-import { formatCurrency, parseISODate } from '../utils/format';
+import {
+  totalsByCategory,
+  totalForMonth,
+  largestExpense,
+  filterByMonth,
+} from "./selectors";
+import { getCategory } from "../constants/categories";
+import { formatCurrency, parseISODate } from "../utils/format";
 
 function pctChange(current, previous) {
   if (previous === 0) return null;
@@ -26,7 +29,7 @@ export function monthOverMonthInsight(allExpenses, year, monthIndex) {
   if (previous === 0 || current === 0) return null;
   const change = pctChange(current, previous);
   if (change === null || Math.abs(change) < 5) return null;
-  const direction = change > 0 ? 'more' : 'less';
+  const direction = change > 0 ? "more" : "less";
   return `You've spent ${Math.abs(Math.round(change))}% ${direction} than last month.`;
 }
 
@@ -55,13 +58,13 @@ export function weekendSkewInsight(monthExpenses) {
 
 export function transactionCountInsight(monthExpenses) {
   if (monthExpenses.length === 0) return null;
-  return `You logged ${monthExpenses.length} expense${monthExpenses.length === 1 ? '' : 's'} this month.`;
+  return `You logged ${monthExpenses.length} expense${monthExpenses.length === 1 ? "" : "s"} this month.`;
 }
 
 export function generateInsights(allExpenses, year, monthIndex) {
   const monthExpenses = filterByMonth(allExpenses, year, monthIndex);
   if (monthExpenses.length === 0) {
-    return ['Log a few expenses this month to see insights here.'];
+    return ["Log a few expenses this month to see insights here."];
   }
   const candidates = [
     monthOverMonthInsight(allExpenses, year, monthIndex),

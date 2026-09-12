@@ -1,4 +1,4 @@
-import * as Notifications from 'expo-notifications';
+import * as Notifications from "expo-notifications";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -9,7 +9,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
-const REMINDER_ID = 'daily-expense-reminder';
+const REMINDER_ID = "daily-expense-reminder";
 
 export async function requestNotificationPermission() {
   const existing = await Notifications.getPermissionsAsync();
@@ -23,7 +23,7 @@ export async function scheduleDailyReminder(hour, minute) {
   await Notifications.scheduleNotificationAsync({
     identifier: REMINDER_ID,
     content: {
-      title: 'Log your spending',
+      title: "Log your spending",
       body: "Don't forget to add today's expenses.",
     },
     trigger: {
@@ -35,5 +35,7 @@ export async function scheduleDailyReminder(hour, minute) {
 }
 
 export async function cancelDailyReminder() {
-  await Notifications.cancelScheduledNotificationAsync(REMINDER_ID).catch(() => {});
+  await Notifications.cancelScheduledNotificationAsync(REMINDER_ID).catch(
+    () => {},
+  );
 }

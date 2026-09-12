@@ -1,4 +1,4 @@
-import * as Network from 'expo-network';
+import * as Network from "expo-network";
 
 export async function isOnline() {
   try {
@@ -6,7 +6,6 @@ export async function isOnline() {
 
     return Boolean(state.isConnected) && state.isInternetReachable !== false;
   } catch (e) {
-
     return true;
   }
 }

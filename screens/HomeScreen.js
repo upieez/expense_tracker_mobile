@@ -1,13 +1,17 @@
-import { View, Text, StyleSheet, Pressable, SectionList } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
-import EmptyState from '../components/EmptyState';
-import ExpenseRow from '../components/ExpenseRow';
-import { formatCurrency, formatMonthYear, dayLabel } from '../utils/format';
-import { useExpenses } from '../store/ExpensesContext';
-import { useSettings } from '../store/SettingsContext';
-import { totalForMonth, filterByMonth, groupIntoDaySections } from '../store/selectors';
-import { colors, spacing, typography, radii } from '../theme';
+import { View, Text, StyleSheet, Pressable, SectionList } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
+import EmptyState from "../components/EmptyState";
+import ExpenseRow from "../components/ExpenseRow";
+import { formatCurrency, formatMonthYear, dayLabel } from "../utils/format";
+import { useExpenses } from "../store/ExpensesContext";
+import { useSettings } from "../store/SettingsContext";
+import {
+  totalForMonth,
+  filterByMonth,
+  groupIntoDaySections,
+} from "../store/selectors";
+import { colors, spacing, typography, radii } from "../theme";
 
 export default function HomeScreen({ navigation }) {
   const { expenses, removeExpense } = useExpenses();
@@ -20,37 +24,50 @@ export default function HomeScreen({ navigation }) {
   const sections = groupIntoDaySections(monthExpenses);
 
   function handleEdit(expense) {
-    navigation.navigate('AddExpense', { expense });
+    navigation.navigate("AddExpense", { expense });
   }
 
   return (
-    <SafeAreaView style={styles.safe} edges={['top']}>
+    <SafeAreaView style={styles.safe} edges={["top"]}>
       <View style={styles.header}>
-        <Text style={styles.monthLabel}>{formatMonthYear(monthIndex, year)}</Text>
-        <Text style={styles.total}>{formatCurrency(monthTotal, currencySymbol)}</Text>
+        <Text style={styles.monthLabel}>
+          {formatMonthYear(monthIndex, year)}
+        </Text>
+        <Text style={styles.total}>
+          {formatCurrency(monthTotal, currencySymbol)}
+        </Text>
         <Text style={styles.totalCaption}>
           {monthExpenses.length === 0
-            ? 'spent this month'
-            : `spent this month · ${monthExpenses.length} expense${monthExpenses.length === 1 ? '' : 's'}`}
+            ? "spent this month"
+            : `spent this month · ${monthExpenses.length} expense${monthExpenses.length === 1 ? "" : "s"}`}
         </Text>
       </View>
 
       {sections.length === 0 ? (
         <View style={styles.emptyArea}>
-          <EmptyState title="No expenses yet" message="Tap the + button to log your first expense." />
+          <EmptyState
+            title="No expenses yet"
+            message="Tap the + button to log your first expense."
+          />
         </View>
       ) : (
         <SectionList
           sections={sections}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <ExpenseRow expense={item} onPress={handleEdit} onDelete={removeExpense} currencySymbol={currencySymbol} />
+            <ExpenseRow
+              expense={item}
+              onPress={handleEdit}
+              onDelete={removeExpense}
+              currencySymbol={currencySymbol}
+            />
           )}
           renderSectionHeader={({ section }) => (
             <Text style={styles.sectionHeader}>{dayLabel(section.title)}</Text>
           )}
-
-          ListFooterComponent={<Text style={styles.hint}>Long-press an expense to delete it</Text>}
+          ListFooterComponent={
+            <Text style={styles.hint}>Long-press an expense to delete it</Text>
+          }
           contentContainerStyle={styles.listContent}
           stickySectionHeadersEnabled={false}
         />
@@ -58,7 +75,7 @@ export default function HomeScreen({ navigation }) {
 
       <Pressable
         style={({ pressed }) => [styles.fab, pressed && styles.fabPressed]}
-        onPress={() => navigation.navigate('AddExpense')}
+        onPress={() => navigation.navigate("AddExpense")}
         accessibilityLabel="Add expense"
         accessibilityRole="button"
       >
@@ -91,12 +108,12 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     marginTop: 2,
   },
-  emptyArea: { flex: 1, justifyContent: 'center' },
+  emptyArea: { flex: 1, justifyContent: "center" },
   listContent: { paddingBottom: 100 },
   hint: {
     fontSize: typography.caption,
     color: colors.textSecondary,
-    textAlign: 'center',
+    textAlign: "center",
     paddingTop: spacing.md,
     paddingBottom: spacing.lg,
   },
@@ -104,7 +121,7 @@ const styles = StyleSheet.create({
     fontSize: typography.caption,
     fontWeight: typography.semibold,
     color: colors.textSecondary,
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
     letterSpacing: 0.5,
     paddingHorizontal: spacing.lg,
     paddingTop: spacing.md,
@@ -112,17 +129,17 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   fab: {
-    position: 'absolute',
+    position: "absolute",
     right: spacing.lg,
     bottom: spacing.lg,
     width: 60,
     height: 60,
     borderRadius: radii.pill,
     backgroundColor: colors.primary,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     elevation: 4,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOpacity: 0.2,
     shadowRadius: 6,
     shadowOffset: { width: 0, height: 3 },

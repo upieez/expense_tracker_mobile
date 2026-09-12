@@ -1,5 +1,5 @@
-import { parseISODate } from '../utils/format';
-import { CATEGORIES } from '../constants/categories';
+import { parseISODate } from "../utils/format";
+import { CATEGORIES } from "../constants/categories";
 
 export function roundCents(n) {
   return Math.round(n * 100) / 100;
@@ -38,7 +38,10 @@ export function totalsByCategory(expenses) {
   const total = sumAmounts(expenses);
   const byCat = new Map();
   for (const e of expenses) {
-    byCat.set(e.categoryId, roundCents((byCat.get(e.categoryId) ?? 0) + e.amount));
+    byCat.set(
+      e.categoryId,
+      roundCents((byCat.get(e.categoryId) ?? 0) + e.amount),
+    );
   }
   return CATEGORIES.filter((c) => byCat.has(c.id))
     .map((c) => ({
@@ -65,5 +68,8 @@ export function monthsWithData(expenses) {
 
 export function largestExpense(expenses) {
   if (expenses.length === 0) return null;
-  return expenses.reduce((max, e) => (e.amount > max.amount ? e : max), expenses[0]);
+  return expenses.reduce(
+    (max, e) => (e.amount > max.amount ? e : max),
+    expenses[0],
+  );
 }

@@ -1,8 +1,12 @@
-import { View, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { colors, spacing, typography } from '../theme';
+import { View, Text, StyleSheet } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { colors, spacing, typography } from "../theme";
 
-export default function EmptyState({ icon = 'wallet-outline', title, message }) {
+export default function EmptyState({
+  icon = "wallet-outline",
+  title,
+  message,
+}) {
   return (
     <View style={styles.container}>
       <View style={styles.iconCircle}>
@@ -16,8 +20,8 @@ export default function EmptyState({ icon = 'wallet-outline', title, message }) 
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: spacing.xl,
   },
   iconCircle: {
@@ -25,8 +29,8 @@ const styles = StyleSheet.create({
     height: 88,
     borderRadius: 44,
     backgroundColor: colors.primaryLight,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: spacing.md,
   },
   title: {
@@ -34,11 +38,11 @@ const styles = StyleSheet.create({
     fontWeight: typography.semibold,
     color: colors.textPrimary,
     marginBottom: spacing.xs,
-    textAlign: 'center',
+    textAlign: "center",
   },
   message: {
     fontSize: typography.body,
     color: colors.textSecondary,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });

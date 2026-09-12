@@ -1,6 +1,6 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const STORAGE_KEY = '@expense-tracker/expenses:v1';
+export const STORAGE_KEY = "@expense-tracker/expenses:v1";
 
 export async function getAllExpenses() {
   try {
@@ -9,8 +9,7 @@ export async function getAllExpenses() {
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed : [];
   } catch (e) {
-
-    console.warn('expenseStorage: failed to read, starting empty', e);
+    console.warn("expenseStorage: failed to read, starting empty", e);
     return [];
   }
 }

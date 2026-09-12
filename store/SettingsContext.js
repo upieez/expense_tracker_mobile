@@ -1,5 +1,9 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { DEFAULT_SETTINGS, getSettings, saveSettings } from '../services/settingsStorage';
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import {
+  DEFAULT_SETTINGS,
+  getSettings,
+  saveSettings,
+} from "../services/settingsStorage";
 
 const SettingsContext = createContext(null);
 
@@ -24,20 +28,30 @@ export function SettingsProvider({ children }) {
     () => (changes) => {
       setSettings((prev) => {
         const next = { ...prev, ...changes };
-        saveSettings(next).catch((e) => console.warn('persist settings failed', e));
+        saveSettings(next).catch((e) =>
+          console.warn("persist settings failed", e),
+        );
         return next;
       });
     },
-    []
+    [],
   );
 
-  const value = useMemo(() => ({ ...settings, hydrated, updateSettings }), [settings, hydrated, updateSettings]);
+  const value = useMemo(
+    () => ({ ...settings, hydrated, updateSettings }),
+    [settings, hydrated, updateSettings],
+  );
 
-  return <SettingsContext.Provider value={value}>{children}</SettingsContext.Provider>;
+  return (
+    <SettingsContext.Provider value={value}>
+      {children}
+    </SettingsContext.Provider>
+  );
 }
 
 export function useSettings() {
   const ctx = useContext(SettingsContext);
-  if (!ctx) throw new Error('useSettings must be used inside <SettingsProvider>');
+  if (!ctx)
+    throw new Error("useSettings must be used inside <SettingsProvider>");
   return ctx;
 }

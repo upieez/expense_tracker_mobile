@@ -1,7 +1,6 @@
 # Expense Tracker
 
-Personal expense & receipt tracker — CM3050 Mobile Development final project (CW2).
-React Native + Expo (SDK 57), JavaScript.
+Mobile Development final project
 
 ## Run
 
@@ -34,5 +33,3 @@ hooks/              (custom hooks)
 utils/              pure helpers (formatting, dates)
 __tests__/          Jest + React Native Testing Library tests
 ```
-
-*(This README will be expanded into the full submission readme.md before hand-in.)*
