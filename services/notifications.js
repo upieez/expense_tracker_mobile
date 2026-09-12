@@ -7,7 +7,8 @@ import * as Notifications from 'expo-notifications';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
-    shouldShowAlert: true,
+    shouldShowBanner: true,
+    shouldShowList: true,
     shouldPlaySound: false,
     shouldSetBadge: false,
   }),
@@ -36,7 +37,11 @@ export async function scheduleDailyReminder(hour, minute) {
       title: 'Log your spending',
       body: "Don't forget to add today's expenses.",
     },
-    trigger: { hour, minute, repeats: true },
+    trigger: {
+      type: Notifications.SchedulableTriggerInputTypes.DAILY,
+      hour,
+      minute,
+    },
   });
 }
 

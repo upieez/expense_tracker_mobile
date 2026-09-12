@@ -11,3 +11,10 @@ jest.mock('@react-native-async-storage/async-storage', () =>
 // would hit; individual tests override this with jest.spyOn(global, 'fetch')
 // when they need to assert on a successful response.
 global.fetch = jest.fn().mockRejectedValue(new Error('network unavailable in tests'));
+
+// jest-expo mocks `expo-file-system`, but Jest treats the `/legacy` subpath
+// (which services/photoStorage.js requires on SDK 54+) as a separate module,
+// so source and tests would otherwise hold two different mock objects.
+// moduleNameMapper does not work here — jest-expo's built-in mocking takes
+// precedence over it and the mapping is ignored.
+jest.mock('expo-file-system/legacy', () => require('expo-file-system'));

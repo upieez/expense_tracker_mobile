@@ -8,4 +8,15 @@ module.exports = {
   requestPermissionsAsync: jest.fn().mockResolvedValue({ granted: true, canAskAgain: true }),
   scheduleNotificationAsync: jest.fn().mockResolvedValue('mock-notification-id'),
   cancelScheduledNotificationAsync: jest.fn().mockResolvedValue(undefined),
+  // Mirrors the real SDK enum — services/notifications.js reads DAILY off it
+  // to build the discriminated-union trigger.
+  SchedulableTriggerInputTypes: {
+    CALENDAR: 'calendar',
+    DAILY: 'daily',
+    DATE: 'date',
+    MONTHLY: 'monthly',
+    TIME_INTERVAL: 'timeInterval',
+    WEEKLY: 'weekly',
+    YEARLY: 'yearly',
+  },
 };

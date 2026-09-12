@@ -53,7 +53,7 @@ describe('SettingsScreen', () => {
     await waitFor(() => expect(screen.getByTestId('reminder').props.children).toBe('true'));
     expect(Notifications.requestPermissionsAsync).toHaveBeenCalledTimes(1);
     expect(Notifications.scheduleNotificationAsync).toHaveBeenCalledWith(
-      expect.objectContaining({ trigger: { hour: 20, minute: 0, repeats: true } })
+      expect.objectContaining({ trigger: { type: 'daily', hour: 20, minute: 0 } })
     );
   });
 

@@ -16,7 +16,7 @@ let FileSystem = null;
 if (Platform.OS !== 'web') {
   try {
     // eslint-disable-next-line global-require
-    FileSystem = require('expo-file-system');
+    FileSystem = require('expo-file-system/legacy');
   } catch (e) {
     FileSystem = null;
   }
